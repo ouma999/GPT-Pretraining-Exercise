@@ -30,9 +30,7 @@ matplotlib.use('Agg')
 import matplotlib.pyplot as plt
 from matplotlib.ticker import MaxNLocator
 
-# ============================================================
-# plot_losses - defined locally to avoid NumPy conflicts
-# ============================================================
+# plot_losses 
 def plot_losses(epochs_seen, tokens_seen, train_losses, val_losses, filename="loss_plot.png"):
     epochs_list = [float(e) for e in epochs_seen]
     tokens_list = [int(t) for t in tokens_seen]
@@ -53,11 +51,8 @@ def plot_losses(epochs_seen, tokens_seen, train_losses, val_losses, filename="lo
     plt.savefig(filename)
     print(f"Plot saved as {filename}")
     plt.close()
-
-# ============================================================
 # trainIt function
-# ============================================================
-def trainIt(model, gpt_config, optimizer, settings,
+    def trainIt(model, gpt_config, optimizer, settings,
             file_path="the-verdict.txt",
             start_context="Every effort moves you",
             loadIt=False):
@@ -111,9 +106,8 @@ def trainIt(model, gpt_config, optimizer, settings,
     return train_losses, val_losses, tokens_seen, model
 
 
-# ============================================================
 # Base configuration
-# ============================================================
+
 GPT_CONFIG_124M = {
     "vocab_size": 50257,
     "context_length": 1024,
@@ -131,9 +125,7 @@ OTHER_SETTINGS = {
     "weight_decay": 0.1
 }
 
-# ============================================================
 # PART B - Train from scratch
-# ============================================================
 print("\n" + "="*60)
 print("PART B: Training 124M model from scratch")
 print("="*60)
@@ -168,9 +160,8 @@ plot_losses(epochs_tensor, tokens_seen, train_losses, val_losses,
             filename="PartB_second_run_loss.png")
 
 
-# ============================================================
 # PART C - Generate text
-# ============================================================
+
 print("\n" + "="*60)
 print("PART C: Text generation with scratch-trained model")
 print("="*60)
@@ -189,9 +180,7 @@ token_ids = generate(
 print("Part C Output text:\n", token_ids_to_text(token_ids, tokenizer))
 
 
-# ============================================================
 # PART D - Pretrained 124M weights
-# ============================================================
 print("\n" + "="*60)
 print("PART D: Using pretrained GPT-2 Small (124M) weights")
 print("="*60)
@@ -269,9 +258,7 @@ token_ids = generate(
 print("Output text:\n", token_ids_to_text(token_ids, tokenizer))
 
 
-# ============================================================
 # PART E - Medium (355M) model
-# ============================================================
 print("\n" + "="*60)
 print("PART E: Using pretrained GPT-2 Medium (355M) weights")
 print("="*60)
